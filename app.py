@@ -21,7 +21,7 @@ def route_details(game_id):
         return "Failed to fetch game details", 500
 
     route = response.json()
-    return render_template("items.html", route=route) 
+    return render_template("items.html", route=route)  
 
 if __name__ == "__main__":
     app.run(debug=True)
