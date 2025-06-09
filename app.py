@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def show_route():
-    response = requests.get("https://data.cityofnewyork.us/resource/ycrg-ses3.json")
+    response = requests.get("https://data.cityofnewyork.us/resource/m6nq-qud6.json")
 
     if response.status_code != 200:
         return "Failed to fetch routes", 500
@@ -13,9 +13,9 @@ def show_route():
     routes = response.json()
     return render_template("index.html", routes=routes)
 
-@app.route("/routes/<int:game_id>")
-def route_details(segmentid):
-    response = requests.get(f"https://data.cityofnewyork.us/resource/ycrg-ses3.json")
+@app.route("/routes/<int:vendorid>")
+def route_details(vendorid):
+    response = requests.get(f"https://data.cityofnewyork.us/resource/m6nq-qud6.json")
 
     if response.status_code != 200:
         return "Failed to fetch game details", 500
