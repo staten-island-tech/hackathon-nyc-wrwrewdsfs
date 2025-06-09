@@ -13,9 +13,9 @@ def show_route():
     routes = response.json()
     return render_template("index.html", routes=routes)
 
-@app.route("/games/<int:game_id>")
-def route_details(game_id):
-    response = requests.get(f"https://www.freetogame.com/api/game?id={game_id}")
+@app.route("/routes/<int:game_id>")
+def route_details(segmentid):
+    response = requests.get(f"https://data.cityofnewyork.us/resource/ycrg-ses3.json")
 
     if response.status_code != 200:
         return "Failed to fetch game details", 500
