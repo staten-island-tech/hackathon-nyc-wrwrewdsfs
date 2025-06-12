@@ -7,23 +7,27 @@
 </head>
 <body class="bg-light">
     <div class="container py-5">
-        <h1 class="mb-4">Route Details</h1>
+        <h1 class="mb-4">Route Details for "{{ street }}"</h1>
 
-        {% for item in route %}
-            {% if item.vendorid|int == vendorid %}
-                <div class="card shadow">
+        {% if routes %}
+            {% for item in routes %}
+                <div class="card shadow-sm mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">{{ item.street or "Unknown Street" }}</h5>
+                        <h5 class="card-title">{{ item.street }}</h5>
                         <p class="card-text">
-                            <strong>Vendor ID:</strong> {{ item.vendorid }}<br>
                             <strong>Direction:</strong> {{ item.bltrafdir or "N/A" }}<br>
-                            <strong>Geometry:</strong> {{ item.the_geom.type if item.the_geom else "N/A" }}
+                            <strong>Geometry Type:</strong> {{ item.the_geom.type if item.the_geom else "N/A" }}
                         </p>
-                        <a href="{{ url_for('show_route') }}" class="btn btn-secondary">Back to All Routes</a>
                     </div>
                 </div>
-            {% endif %}
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-warning">
+                No route data found for "{{ street }}".
+            </div>
+        {% endif %}
+
+        <a href="{{ url_for('show_route') }}" class="btn btn-secondary mt-3">Back to All Routes</a>
     </div>
 </body>
 </html>

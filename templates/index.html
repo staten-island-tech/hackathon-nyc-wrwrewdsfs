@@ -10,22 +10,21 @@
         <h1 class="mb-4">NYC Truck Routes</h1>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             {% for route in routes %}
-                <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ route.street or "Unknown Street" }}</h5>
-                            <p class="card-text">
-                                <strong>Vendor ID:</strong> {{ route.vendorid or "N/A" }}<br>
-                                <strong>Direction:</strong> {{ route.bltrafdir or "N/A" }}
-                            </p>
-                            {% if route.vendorid %}
-                                <a href="{{ url_for('route_details', vendorid=route.vendorid|int) }}" class="btn btn-primary">View Details</a>
-                            {% else %}
-                                <span class="text-muted">No details available</span>
-                            {% endif %}
+                {% if route.street %}
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ route.street }}</h5>
+                                <p class="card-text">
+                                    <strong>Direction:</strong> {{ route.bltrafdir or "N/A" }}
+                                </p>
+                                <a href="{{ url_for('route_details', street=route.street | urlencode) }}" class="btn btn-primary">
+                                    View Details
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
