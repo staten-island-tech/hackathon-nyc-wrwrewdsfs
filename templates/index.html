@@ -21,7 +21,7 @@
                                     Injuries: {{ crash.number_of_persons_injured or 0 }}<br>
                                     Killed: {{ crash.number_of_persons_killed or 0 }}
                                 </p>
-                                <a href="{{ url_for('vehicle_type_details', vehicle_type=crash.vehicle_type_code1) }}" class="btn btn-danger">
+                                <a href="{{ url_for('vehicle_type_details', vehicle_type=crash.vehicle_type_code1|urlencode) }}" class="btn btn-danger">
                                     View All {{ crash.vehicle_type_code1 }} Crashes
                                 </a>
                             </div>
